@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <title>Vault 101</title>
+    <style>
+        body { background-color: #1a1a1a; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { background: #2a2a2a; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #444; }
+        #number-display { font-size: 40px; color: #00ff88; margin: 20px 0; font-weight: bold; }
+        button { background: #00ff88; color: black; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1 id="header">SECRET VAULT</h1>
+    <div id="number-display">Locked</div>
+    <button id="gen-btn" py-click="generate_number">GENERATE KEY</button>
+</div>
+
+<script type="py">
+import random
+from pyscript import document
+
+def generate_number(event):
+    # 1. Logic
+    secret = random.randint(1000000, 9999999)
+    
+    # 2. Update UI
+    document.querySelector("#number-display").innerText = str(secret)
+    document.querySelector("#header").innerText = "KEY GENERATED"
+    
+    # 3. Destroy Button
+    btn = event.target
+    btn.style.display = "none"
+</script>
+
+</body>
+</html>
